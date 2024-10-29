@@ -1,3 +1,5 @@
+import data from "./constants/data";
+
 export default function App() {
   return (
     <div className="overflow-x-hidden antialiased text-neutral-200 selection:bg-neutral-200 selection:text-neutral-800">
