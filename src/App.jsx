@@ -3,7 +3,6 @@ import { stockData } from "./constants/data";
 import CompanyList from "./components/CompanyList";
 import DataList from "./components/DataList";
 import Chart from "./components/Chart";
-import { Image } from "@nextui-org/react";
 import NavBar from "./components/NavBar";
 
 const App = () => {
