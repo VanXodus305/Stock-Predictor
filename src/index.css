@@ -7,3 +7,17 @@
 :root {
   font-family: "Kodchasan", sans-serif;
 }
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #041D37;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2463A2;
+  border-radius: 50px;
+}

@@ -1,45 +1,47 @@
-export default stockData = [
+export const stockData = [
   {
-    company: "IBM",
-    symbol: "IBM",
+    name: "Reliance",
+    symbol: "RELIANCE",
+    logo: "https://logo.clearbit.com/reliance.com",
     stock: [
       {
         date: "2021-09-01",
-        open: 143.759995,
-        high: 144.220001,
-        low: 142.429993,
-        close: 143.25,
-        volume: 4860000,
+        open: 2310.0,
+        high: 2320.0,
+        low: 2295.0,
+        close: 2300.0,
+        volume: 1000000,
       },
       {
         date: "2021-09-02",
-        open: 143.25,
-        high: 144.220001,
-        low: 142.429993,
-        close: 143.25,
-        volume: 4860000,
+        open: 2310.0,
+        high: 2320.0,
+        low: 2295.0,
+        close: 2300.0,
+        volume: 1000000,
       },
       {
         date: "2021-09-03",
-        open: 143.25,
-        high: 144.220001,
-        low: 142.429993,
-        close: 143.25,
-        volume: 4860000,
+        open: 2310.0,
+        high: 2320.0,
+        low: 2295.0,
+        close: 2300.0,
+        volume: 1000000,
       },
       {
         date: "2021-09-04",
-        open: 143.25,
-        high: 144.220001,
-        low: 142.429993,
-        close: 143.25,
-        volume: 4860000,
+        open: 2310.0,
+        high: 2320.0,
+        low: 2295.0,
+        close: 2300.0,
+        volume: 1000000,
       },
     ],
   },
   {
-    company: "Apple",
+    name: "Apple",
     symbol: "AAPL",
+    logo: "https://logo.clearbit.com/apple.com",
     stock: [
       {
         date: "2021-09-01",
@@ -76,8 +78,9 @@ export default stockData = [
     ],
   },
   {
-    company: "Microsoft",
+    name: "Microsoft",
     symbol: "MSFT",
+    logo: "https://logo.clearbit.com/microsoft.com",
     stock: [
       {
         date: "2021-09-01",
@@ -114,8 +117,9 @@ export default stockData = [
     ],
   },
   {
-    company: "Google",
+    name: "Google",
     symbol: "GOOGL",
+    logo: "https://logo.clearbit.com/google.com",
     stock: [
       {
         date: "2021-09-01",
@@ -152,8 +156,9 @@ export default stockData = [
     ],
   },
   {
-    company: "Tesla",
+    name: "Tesla",
     symbol: "TSLA",
+    logo: "https://logo.clearbit.com/tesla.com",
     stock: [
       {
         date: "2021-09-01",
