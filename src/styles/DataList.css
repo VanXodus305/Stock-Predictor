@@ -1,0 +1,133 @@
+@import url("https://fonts.googleapis.com/css2?family=Kodchasan:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
+
+:root {
+  font-family: "Kodchasan", sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Kodchasan", sans-serif;
+  background-color: #041d37;
+  color: white;
+}
+
+.dashboard {
+  background-color: #4f95df;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 70rem;
+  min-height: 70vh;
+  border-radius: 2rem;
+}
+
+.stock-container {
+  width: 100%;
+  background-color: #2463a2;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.stock-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stock-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.stock-change {
+  display: flex;
+  align-items: center;
+  font-size: 1.1rem;
+}
+
+.stock-details {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.2rem;
+  margin: 1rem;
+  padding: 1rem;
+  background-color: #4f95df;
+  border-radius: 10px;
+}
+
+.stock-details div {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.table-container {
+  margin-top: 15px;
+  width: 100%;
+}
+
+.stock-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.stock-table th,
+.stock-table td {
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: 2px solid #09315a;
+  text-align: center;
+}
+
+.stock-table th {
+  background-color: #124690;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dashboard {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .stock-details {
+    font-size: 1rem;
+  }
+
+  .stock-table th,
+  .stock-table td {
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .dashboard {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .stock-name {
+    font-size: 1.2rem;
+  }
+
+  .stock-details div {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .stock-table th,
+  .stock-table td {
+    padding: 0.6rem;
+    font-size: 0.8rem;
+  }
+}
