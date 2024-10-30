@@ -14,17 +14,15 @@ body {
 
 .dashboard {
   background-color: #4f95df;
-  width: 60%;
+  width: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 20px;
-  padding: 40px;
-  width: 70rem;
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 70rem;
   min-height: 70vh;
-  max-height: 100%;
   border-radius: 2rem;
-  /* overflow-y: auto; */
 }
 
 .stock-container {
@@ -42,28 +40,27 @@ body {
 }
 
 .stock-name {
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: bold;
 }
 
 .stock-change {
   display: flex;
   align-items: center;
-  font-size: 18px;
+  font-size: 1.1rem;
 }
 
 .stock-details {
   width: 100%;
-  height: 6rem;
   display: flex;
-  justify-content: space-between;
   flex-direction: column;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   margin: 1rem;
-  padding: 0.8rem;
+  padding: 1rem;
   background-color: #4f95df;
   border-radius: 10px;
 }
+
 .stock-details div {
   display: flex;
   justify-content: space-between;
@@ -83,8 +80,8 @@ body {
 
 .stock-table th,
 .stock-table td {
-  padding: 1.2rem;
-  font-size: 1.1rem;
+  padding: 1rem;
+  font-size: 1rem;
   font-weight: bold;
   border: 2px solid #09315a;
   text-align: center;
@@ -92,4 +89,45 @@ body {
 
 .stock-table th {
   background-color: #124690;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dashboard {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .stock-details {
+    font-size: 1rem;
+  }
+
+  .stock-table th,
+  .stock-table td {
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .dashboard {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .stock-name {
+    font-size: 1.2rem;
+  }
+
+  .stock-details div {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .stock-table th,
+  .stock-table td {
+    padding: 0.6rem;
+    font-size: 0.8rem;
+  }
 }
