@@ -1,10 +1,14 @@
 import React from "react";
+import { GoTriangleDown, GoTriangleUp } from "react-icons/go";
 
 const CompanyList = ({ company }) => {
+  const update = (
+    (company.stock[0].volume - company.stock[1].volume) /
+    company.stock[0].volume
+  ).toFixed(2);
+
   return (
-    <div
-      className="flex bg-foreground flex-row items-center justify-between py-1 md:py-2 px-4 rounded-2xl shadow-md cursor-pointer transition-all ease-in-out duration-300 hover:shadow-lg hover:shadow-foreground hover:bg-background_2 w-full"
-    >
+    <div className="flex bg-foreground flex-row items-center justify-between py-1 md:py-1.5 pl-4 pr-1 md:pr-1.5 rounded-2xl shadow-md cursor-pointer transition-all ease-in-out duration-300 hover:shadow-lg hover:shadow-foreground hover:bg-background_2 w-full md:h-16 h-[56px] group">
       <div className="flex flex-row gap-5 items-center justify-start w-[50%] pl-2 md:pl-4">
         <img
           src={company.logo}
@@ -18,7 +22,20 @@ const CompanyList = ({ company }) => {
           <p className="text-sm md:text-md w-full">{company.symbol}</p>
         </div>
       </div>
-      <div className="flex w-[50%] justify-end items-center"></div>
+      <div className="flex w-[50%] justify-end items-center h-full">
+        <div
+          className={`flex flex-row items-center justify-center bg-background_1 md:px-3 px-1.5 rounded-xl h-full ${
+            update < 0 ? "text-red-500" : "text-green-500"
+          }`}
+        >
+          {update < 0 ? (
+            <GoTriangleDown className="text-2xl md:text-3xl" />
+          ) : (
+            <GoTriangleUp className="text-2xl md:text-3xl" />
+          )}
+          <p className="text-sm md:text-md font-bold">{update}%</p>
+        </div>
+      </div>
     </div>
   );
 };
