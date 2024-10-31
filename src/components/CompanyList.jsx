@@ -8,7 +8,7 @@ const CompanyList = ({ company }) => {
   ).toFixed(2);
 
   return (
-    <div className="flex bg-foreground flex-row items-center justify-between py-1 md:py-1.5 pl-4 pr-1 md:pr-1.5 rounded-2xl shadow-md cursor-pointer transition-all ease-in-out duration-300 hover:shadow-lg hover:shadow-foreground hover:bg-background_2 w-full md:h-16 h-[56px] group">
+    <div className="flex bg-foreground_1 flex-row items-center justify-between py-1 md:py-1.5 pl-4 pr-1 md:pr-1.5 rounded-2xl shadow-md cursor-pointer transition-all ease-in-out duration-300 hover:shadow-lg hover:shadow-foreground_1 hover:bg-background_2 w-full md:h-16 h-[56px] group">
       <div className="flex flex-row gap-5 items-center justify-start w-[80%] pl-2 md:pl-4">
         <img
           src={company.logo}
