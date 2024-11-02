@@ -50,7 +50,7 @@ const DataList = ({ stock }) => {
         </div>
       </div>
 
-      <div className="flex flex-col gap-4 justify-center items-center">
+      <div className="flex flex-col gap-4 justify-center items-center pb-8">
         <div className="table-container w-full text-neutral-200">
           <table className="stock-table">
             <thead>
@@ -137,7 +137,11 @@ const DataList = ({ stock }) => {
             </tbody>
           </table>
         </div>
-        <div className="flex flex-row gap-2 items-center justify-center mb-8 w-full">
+        <div
+          className={`flex flex-row gap-2 items-center justify-center w-full ${
+            dateRange.key === 5 ? "hidden" : ""
+          }`}
+        >
           <h1 className="text-xl font-bold">PAGE:</h1>
           <div className="flex flex-row gap-1.5 items-center justify-evenly"></div>
           {Array(stockData.length / 5)
