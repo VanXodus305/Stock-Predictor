@@ -18,8 +18,13 @@ const DataList = ({ stock }) => {
     { label: "Last 40 days", key: 40, start: 0, end: 40 },
   ];
   const [dateRange, setDateRange] = useState(dateRanges[0]);
+
   const sortOptions = ["unsorted", "ascending", "descending"];
   const [sort, setSort] = useState(sortOptions[0]);
+
+  const [stockData, setStockData] = useState(stock.slice(0, 5));
+
+  const [page, setPage] = useState(1);
 
   return (
     <div className="dashboard w-full bg-foreground_1">
@@ -45,107 +50,118 @@ const DataList = ({ stock }) => {
         </div>
       </div>
 
-      <div className="table-container w-full text-neutral-200">
-        <table className="stock-table">
-          <thead>
-            <tr>
-              <th>
-                <Select
-                  label="DATE"
-                  variant="underlined"
-                  radius="none"
-                  defaultSelectedKeys={["5"]}
-                  onSelectionChange={(value) => {
-                    const range = dateRanges.find(
-                      (d) => d.key == Array.from(value)[0]
-                    );
-                    setDateRange(range ? range : dateRange);
-                  }}
-                  classNames={{
-                    popoverContent: "dark bg-[#124690]",
-                    value: "text-md",
-                    trigger: "py-0",
-                    label: "text-md text-neutral-200",
-                    base: "dark",
-                  }}
-                >
-                  {dateRanges.map((dateRange) => (
-                    <SelectItem key={dateRange.key}>
-                      {dateRange.label}
-                    </SelectItem>
-                  ))}
-                </Select>
-              </th>
-              <th>OPEN</th>
-              <th>LOW</th>
-              <th>HIGH</th>
-              <th>CLOSE</th>
-              <th
-                className="cursor-pointer"
-                onClick={() =>
-                  sort === "unsorted"
-                    ? setSort("ascending")
-                    : sort === "ascending"
-                    ? setSort("descending")
-                    : setSort("unsorted")
-                }
-              >
-                <div className="flex flex-row w-full justify-center gap-2 items-center select-none">
-                  <h1>VOLUME</h1>
-                  {sort === "unsorted" ? (
-                    <TiArrowUnsorted className="flex text-lg" />
-                  ) : sort === "ascending" ? (
-                    <TiArrowSortedUp className="flex text-lg" />
-                  ) : (
-                    <TiArrowSortedDown className="flex text-lg" />
+      <div className="flex flex-col gap-4 justify-center items-center">
+        <div className="table-container w-full text-neutral-200">
+          <table className="stock-table">
+            <thead>
+              <tr>
+                <th>
+                  <Select
+                    label="DATE"
+                    variant="underlined"
+                    radius="none"
+                    defaultSelectedKeys={["5"]}
+                    onSelectionChange={(value) => {
+                      const range = dateRanges.find(
+                        (d) => d.key == Array.from(value)[0]
+                      );
+                      setDateRange(range ? range : dateRange);
+                      setStockData(stock.slice(range.start, range.end));
+                      setPage(1);
+                    }}
+                    classNames={{
+                      popoverContent: "dark bg-[#124690]",
+                      value: "text-md",
+                      trigger: "py-0",
+                      label: "text-md text-neutral-200",
+                      base: "dark",
+                    }}
+                  >
+                    {dateRanges.map((dateRange) => (
+                      <SelectItem key={dateRange.key}>
+                        {dateRange.label}
+                      </SelectItem>
+                    ))}
+                  </Select>
+                </th>
+                <th>OPEN</th>
+                <th>LOW</th>
+                <th>HIGH</th>
+                <th>CLOSE</th>
+                <th
+                  className="cursor-pointer"
+                  onClick={() => (
+                    setPage(1),
+                    sort === "unsorted"
+                      ? (setSort("ascending"),
+                        setStockData(
+                          stockData.sort((a, b) => a.volume - b.volume)
+                        ))
+                      : sort === "ascending"
+                      ? (setSort("descending"),
+                        setStockData(
+                          stockData.sort((a, b) => b.volume - a.volume)
+                        ))
+                      : (setSort("unsorted"),
+                        setStockData(
+                          stock.slice(dateRange.start, dateRange.end)
+                        ))
                   )}
-                </div>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {sort === "unsorted"
-              ? stock
-                  .slice(dateRange.start, dateRange.end)
-                  .map((stockItem, idx) => (
-                    <tr key={idx} className="bg-foreground_1">
-                      <td>{stockItem.date}</td>
-                      <td>{stockItem.open}</td>
-                      <td>{stockItem.low}</td>
-                      <td>{stockItem.high}</td>
-                      <td>{stockItem.close}</td>
-                      <td>{stockItem.volume}</td>
-                    </tr>
-                  ))
-              : sort === "ascending"
-              ? stock
-                  .slice(dateRange.start, dateRange.end)
-                  .sort((a, b) => a.volume - b.volume)
-                  .map((stockItem, idx) => (
-                    <tr key={idx} className="bg-foreground_1">
-                      <td>{stockItem.date}</td>
-                      <td>{stockItem.open}</td>
-                      <td>{stockItem.low}</td>
-                      <td>{stockItem.high}</td>
-                      <td>{stockItem.close}</td>
-                      <td>{stockItem.volume}</td>
-                    </tr>
-                  ))
-              : stock
-                  .slice(dateRange.start, dateRange.end)
-                  .sort((a, b) => b.volume - a.volume)
-                  .map((stockItem, idx) => (
-                    <tr key={idx} className="bg-foreground_1">
-                      <td>{stockItem.date}</td>
-                      <td>{stockItem.open}</td>
-                      <td>{stockItem.low}</td>
-                      <td>{stockItem.high}</td>
-                      <td>{stockItem.close}</td>
-                      <td>{stockItem.volume}</td>
-                    </tr>
-                  ))}
-          </tbody>
-        </table>
+                >
+                  <div className="flex flex-row w-full justify-center gap-2 items-center select-none">
+                    <h1>VOLUME</h1>
+                    {sort === "unsorted" ? (
+                      <TiArrowUnsorted className="flex text-lg" />
+                    ) : sort === "ascending" ? (
+                      <TiArrowSortedUp className="flex text-lg" />
+                    ) : (
+                      <TiArrowSortedDown className="flex text-lg" />
+                    )}
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {stockData
+                .slice((page - 1) * 5, (page - 1) * 5 + 5)
+                .map((stockItem, idx) => (
+                  <tr key={idx} className="bg-foreground_1">
+                    <td>{stockItem.date}</td>
+                    <td>{stockItem.open}</td>
+                    <td>{stockItem.low}</td>
+                    <td>{stockItem.high}</td>
+                    <td>{stockItem.close}</td>
+                    <td>{stockItem.volume}</td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+        </div>
+        <div className="flex flex-row gap-2 items-center justify-center mb-8 w-full">
+          <h1 className="text-xl font-bold">PAGE:</h1>
+          <div className="flex flex-row gap-1.5 items-center justify-evenly"></div>
+          {Array(stockData.length / 5)
+            .fill(undefined)
+            .map((_, index) => (
+              <div
+                className={`flex items-center justify-center rounded-full border-background_2 size-8 cursor-pointer p-2 border-2 hover:scale-110 hover:bg-background_2 group transition-all ease-in-out duration-100 ${
+                  index + 1 === page ? "bg-background_2" : "bg-transparent"
+                }`}
+                key={index + 1}
+                onClick={() => setPage(index + 1)}
+              >
+                <h1
+                  className={`text-md font-bold group-hover:text-neutral-200 ${
+                    index + 1 === page
+                      ? "text-neutral-200"
+                      : "text-background_2"
+                  }`}
+                >
+                  {index + 1}
+                </h1>
+              </div>
+            ))}
+        </div>
       </div>
     </div>
   );
