@@ -4,6 +4,7 @@ import CompanyList from "./components/CompanyList";
 import DataList from "./components/DataList";
 import Chart from "./components/Chart";
 import NavBar from "./components/NavBar";
+import { IoArrowBack } from "react-icons/io5";
 
 const App = () => {
   const [company, setCompany] = useState(undefined);
@@ -17,7 +18,11 @@ const App = () => {
         </div>
         <div className="container mx-auto px-5 py-20">
           {company ? (
-            <div className="flex flex-row gap-5 items-center justify-start w-[50%] mb-7">
+            <div className="flex flex-row gap-3 md:gap-5 items-center justify-start mb-10">
+              <IoArrowBack
+                className="md:text-5xl text-3xl cursor-pointer mr-2"
+                onClick={() => setCompany(undefined)}
+              />
               <img
                 src={company.logo}
                 alt={company.name}
@@ -36,8 +41,12 @@ const App = () => {
           ) : (
             <div className="flex flex-col gap-6 items-center justify-center">
               {stockData.map((company, index) => (
-                <div onClick={() => setCompany(company)} className="w-full">
-                  <CompanyList company={company} key={index} />
+                <div
+                  onClick={() => setCompany(company)}
+                  className="w-full"
+                  key={index}
+                >
+                  <CompanyList company={company} />
                 </div>
               ))}
             </div>

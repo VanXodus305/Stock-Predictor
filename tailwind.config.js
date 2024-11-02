@@ -12,7 +12,7 @@ export default {
       colors: {
         background_1: "#041D37",
         background_2: "#083C70",
-        foreground: "#2463A2",
+        foreground_1: "#2463A2",
       },
     },
   },
