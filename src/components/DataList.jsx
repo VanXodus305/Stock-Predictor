@@ -1,6 +1,11 @@
 import { useState } from "react";
 import "../styles/DataList.css";
 import { Select, SelectItem } from "@nextui-org/react";
+import {
+  TiArrowSortedDown,
+  TiArrowSortedUp,
+  TiArrowUnsorted,
+} from "react-icons/ti";
 // import "../index.css";
 
 const DataList = ({ stock }) => {
@@ -13,6 +18,8 @@ const DataList = ({ stock }) => {
     { label: "Last 40 days", key: 40, start: 0, end: 40 },
   ];
   const [dateRange, setDateRange] = useState(dateRanges[0]);
+  const sortOptions = ["unsorted", "ascending", "descending"];
+  const [sort, setSort] = useState(sortOptions[0]);
 
   return (
     <div className="dashboard w-full bg-foreground_1">
@@ -49,9 +56,10 @@ const DataList = ({ stock }) => {
                   radius="none"
                   defaultSelectedKeys={["5"]}
                   onSelectionChange={(value) => {
-                    setDateRange(
-                      dateRanges.find((d) => d.key == Array.from(value)[0])
+                    const range = dateRanges.find(
+                      (d) => d.key == Array.from(value)[0]
                     );
+                    setDateRange(range ? range : dateRange);
                   }}
                   classNames={{
                     popoverContent: "dark bg-[#124690]",
@@ -72,22 +80,70 @@ const DataList = ({ stock }) => {
               <th>LOW</th>
               <th>HIGH</th>
               <th>CLOSE</th>
-              <th>VOLUME</th>
+              <th
+                className="cursor-pointer"
+                onClick={() =>
+                  sort === "unsorted"
+                    ? setSort("ascending")
+                    : sort === "ascending"
+                    ? setSort("descending")
+                    : setSort("unsorted")
+                }
+              >
+                <div className="flex flex-row w-full justify-center gap-2 items-center select-none">
+                  <h1>VOLUME</h1>
+                  {sort === "unsorted" ? (
+                    <TiArrowUnsorted className="flex text-lg" />
+                  ) : sort === "ascending" ? (
+                    <TiArrowSortedUp className="flex text-lg" />
+                  ) : (
+                    <TiArrowSortedDown className="flex text-lg" />
+                  )}
+                </div>
+              </th>
             </tr>
           </thead>
           <tbody>
-            {stock
-              .slice(dateRange.start, dateRange.end)
-              .map((stockItem, idx) => (
-                <tr key={idx} className="bg-foreground_1">
-                  <td>{stockItem.date}</td>
-                  <td>{stockItem.open}</td>
-                  <td>{stockItem.low}</td>
-                  <td>{stockItem.high}</td>
-                  <td>{stockItem.close}</td>
-                  <td>{stockItem.volume}</td>
-                </tr>
-              ))}
+            {sort === "unsorted"
+              ? stock
+                  .slice(dateRange.start, dateRange.end)
+                  .map((stockItem, idx) => (
+                    <tr key={idx} className="bg-foreground_1">
+                      <td>{stockItem.date}</td>
+                      <td>{stockItem.open}</td>
+                      <td>{stockItem.low}</td>
+                      <td>{stockItem.high}</td>
+                      <td>{stockItem.close}</td>
+                      <td>{stockItem.volume}</td>
+                    </tr>
+                  ))
+              : sort === "ascending"
+              ? stock
+                  .slice(dateRange.start, dateRange.end)
+                  .sort((a, b) => a.volume - b.volume)
+                  .map((stockItem, idx) => (
+                    <tr key={idx} className="bg-foreground_1">
+                      <td>{stockItem.date}</td>
+                      <td>{stockItem.open}</td>
+                      <td>{stockItem.low}</td>
+                      <td>{stockItem.high}</td>
+                      <td>{stockItem.close}</td>
+                      <td>{stockItem.volume}</td>
+                    </tr>
+                  ))
+              : stock
+                  .slice(dateRange.start, dateRange.end)
+                  .sort((a, b) => b.volume - a.volume)
+                  .map((stockItem, idx) => (
+                    <tr key={idx} className="bg-foreground_1">
+                      <td>{stockItem.date}</td>
+                      <td>{stockItem.open}</td>
+                      <td>{stockItem.low}</td>
+                      <td>{stockItem.high}</td>
+                      <td>{stockItem.close}</td>
+                      <td>{stockItem.volume}</td>
+                    </tr>
+                  ))}
           </tbody>
         </table>
       </div>
