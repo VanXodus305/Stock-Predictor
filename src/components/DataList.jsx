@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "../styles/DataList.css";
 import { Select, SelectItem } from "@nextui-org/react";
+import Chart from "./Chart";
 import {
   TiArrowSortedDown,
   TiArrowSortedUp,
@@ -166,6 +167,10 @@ const DataList = ({ stock }) => {
               </div>
             ))}
         </div>
+      </div>
+
+      <div className="mt-6">
+        <Chart stock={stockData}></Chart>
       </div>
     </div>
   );

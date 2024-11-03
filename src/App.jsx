@@ -2,7 +2,6 @@ import { useState } from "react";
 import { stockData } from "./constants/data";
 import CompanyList from "./components/CompanyList";
 import DataList from "./components/DataList";
-import Chart from "./components/Chart";
 import NavBar from "./components/NavBar";
 import { IoArrowBack } from "react-icons/io5";
 
@@ -36,7 +35,6 @@ const App = () => {
           {company ? (
             <div className="w-full flex flex-col gap-10 items-start justify-center">
               <DataList stock={company.stock}></DataList>
-              <Chart stock={company.stock}></Chart>
             </div>
           ) : (
             <div className="flex flex-col gap-6 items-center justify-center">
