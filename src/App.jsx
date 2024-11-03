@@ -9,12 +9,43 @@ import { IoArrowBack } from "react-icons/io5";
 const App = () => {
   const [company, setCompany] = useState(undefined);
   const data = [
-    { name: '2024-10-01', open: 120, high: 125, low: 115, close: 122 },
-    { name: '2024-10-02', open: 123, high: 128, low: 118, close: 125 },
-    { name: '2024-10-03', open: 126, high: 130, low: 120, close: 128 },
-    { name: '2024-10-04', open: 128, high: 135, low: 125, close: 130 },
-    // More data points
+    { date: '2024-10-01', open: 120, high: 125, low: 115, close: 122 },
+    { date: '2024-10-02', open: 123, high: 128, low: 118, close: 125 },
+    { date: '2024-10-03', open: 126, high: 130, low: 120, close: 128 },
+    { date: '2024-10-04', open: 128, high: 135, low: 125, close: 130 },
+    { date: '2024-10-05', open: 130, high: 137, low: 126, close: 134 },
+    { date: '2024-10-06', open: 134, high: 139, low: 131, close: 136 },
+    { date: '2024-10-07', open: 135, high: 140, low: 132, close: 138 },
+    { date: '2024-10-08', open: 138, high: 143, low: 134, close: 139 },
+    { date: '2024-10-09', open: 139, high: 144, low: 136, close: 142 },
+    { date: '2024-10-10', open: 142, high: 148, low: 138, close: 145 },
+    { date: '2024-10-11', open: 145, high: 150, low: 141, close: 147 },
+    { date: '2024-10-12', open: 147, high: 153, low: 144, close: 150 },
+    { date: '2024-10-13', open: 150, high: 155, low: 147, close: 153 },
+    { date: '2024-10-14', open: 153, high: 158, low: 149, close: 155 },
+    { date: '2024-10-15', open: 155, high: 160, low: 151, close: 157 },
+    { date: '2024-10-16', open: 157, high: 162, low: 153, close: 159 },
+    { date: '2024-10-17', open: 159, high: 165, low: 156, close: 163 },
+    { date: '2024-10-18', open: 163, high: 168, low: 159, close: 166 },
+    { date: '2024-10-19', open: 166, high: 172, low: 162, close: 170 },
+    { date: '2024-10-20', open: 170, high: 175, low: 165, close: 172 },
+    { date: '2024-10-21', open: 172, high: 178, low: 168, close: 174 },
+    { date: '2024-10-22', open: 174, high: 180, low: 170, close: 176 },
+    { date: '2024-10-23', open: 176, high: 183, low: 172, close: 179 },
+    { date: '2024-10-24', open: 179, high: 185, low: 175, close: 181 },
+    { date: '2024-10-25', open: 181, high: 188, low: 178, close: 184 },
+    { date: '2024-10-26', open: 184, high: 190, low: 180, close: 186 },
+    { date: '2024-10-27', open: 186, high: 193, low: 183, close: 189 },
+    { date: '2024-10-28', open: 189, high: 195, low: 185, close: 191 },
+    { date: '2024-10-29', open: 191, high: 197, low: 188, close: 194 },
+    { date: '2024-10-30', open: 194, high: 200, low: 190, close: 197 },
+    { date: '2024-10-31', open: 197, high: 203, low: 193, close: 201 },
+    { date: '2024-11-01', open: 201, high: 207, low: 197, close: 204 },
+    { date: '2024-11-02', open: 204, high: 210, low: 200, close: 207 },
+    { date: '2024-11-03', open: 207, high: 213, low: 203, close: 210 },
+    { date: '2024-11-04', open: 210, high: 215, low: 206, close: 213 },
   ];
+  
 
   return (
     <>

@@ -4,54 +4,69 @@ import {
   XAxis,
   YAxis,
   Tooltip,
-  Bar,
-  Line,
   CartesianGrid,
   ResponsiveContainer,
+  Bar,
 } from "recharts";
 
+const CandlestickShape = ({ x, y, width, height, payload, min, max }) => {
+  // Define colors
+  const isBullish = payload.close > payload.open;
+  const color = isBullish ? "#4CAF50" : "#F44336"; // Green for bullish, red for bearish
+
+  // Calculate Y scale
+  const yScale = (value) => y + (height * (max - value)) / (max - min);
+
+  // Position calculations for wicks and body
+  const highY = yScale(payload.high);
+  const lowY = yScale(payload.low);
+  const openY = yScale(payload.open);
+  const closeY = yScale(payload.close);
+
+  // Body position and height
+  const candleBodyY = Math.min(openY, closeY);
+  const candleBodyHeight = Math.abs(openY - closeY);
+
+  return (
+    <>
+      {/* Wick */}
+      <line
+        x1={x + width / 2}
+        y1={highY}
+        x2={x + width / 2}
+        y2={lowY}
+        stroke={color}
+        strokeWidth={1} // Thinner wick for better aesthetics
+      />
+      {/* Body */}
+      <rect
+        x={x + width * 0.25} // Position it within the middle of the column
+        y={candleBodyY}
+        width={width * 0.5} // Make the body narrower
+        height={candleBodyHeight}
+        fill={color}
+      />
+    </>
+  );
+};
+
 const CandlestickChart = ({ data }) => {
+  // Find min and max values for scaling
+  const min = Math.min(...data.map((item) => item.low));
+  const max = Math.max(...data.map((item) => item.high));
+
   return (
     <ResponsiveContainer width="100%" height={400}>
       <ComposedChart data={data}>
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
+        <XAxis dataKey="date" />
+        <YAxis domain={[min, max]} />
         <Tooltip />
-        
-        {/* Add Line component for high and low points */}
-        <Line
-          type="monotone"
-          dataKey="high"
-          stroke="#4CAF50"
-          strokeWidth={2}
-          dot={false}
-        />
-        <Line
-          type="monotone"
-          dataKey="low"
-          stroke="#F44336"
-          strokeWidth={2}
-          dot={false}
-        />
-
-        {/* Use Bar component to create the "body" of each candlestick */}
+        {/* Custom Bar with CandlestickShape */}
         <Bar
           dataKey="close"
           fill="#8884d8"
-          label={{ position: "top" }}
-          shape={({ x, y, width, height, payload }) => {
-            const color = payload.open > payload.close ? "#F44336" : "#4CAF50";
-            return (
-              <rect
-                x={x}
-                y={payload.open > payload.close ? y : y + height}
-                width={width}
-                height={Math.abs(height - y)}
-                fill={color}
-              />
-            );
-          }}
+          shape={<CandlestickShape min={min} max={max} />}
         />
       </ComposedChart>
     </ResponsiveContainer>
