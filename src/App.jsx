@@ -8,6 +8,13 @@ import { IoArrowBack } from "react-icons/io5";
 
 const App = () => {
   const [company, setCompany] = useState(undefined);
+  const data = [
+    { name: '2024-10-01', open: 120, high: 125, low: 115, close: 122 },
+    { name: '2024-10-02', open: 123, high: 128, low: 118, close: 125 },
+    { name: '2024-10-03', open: 126, high: 130, low: 120, close: 128 },
+    { name: '2024-10-04', open: 128, high: 135, low: 125, close: 130 },
+    // More data points
+  ];
 
   return (
     <>
@@ -36,7 +43,7 @@ const App = () => {
           {company ? (
             <div className="w-full flex flex-col gap-10 items-start justify-center">
               <DataList stock={company.stock}></DataList>
-              <Chart stock={company.stock}></Chart>
+              <Chart data={data}></Chart>
             </div>
           ) : (
             <div className="flex flex-col gap-6 items-center justify-center">
