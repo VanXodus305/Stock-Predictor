@@ -6,6 +6,8 @@ import NavBar from "./components/NavBar";
 import { IoArrowBack } from "react-icons/io5";
 import { Button, Input } from "@nextui-org/react";
 import { FaArrowRight, FaKey, FaUser } from "react-icons/fa6";
+import { GoTriangleDown, GoTriangleUp } from "react-icons/go";
+import { MdOutlineHorizontalRule } from "react-icons/md";
 
 const App = () => {
   const [company, setCompany] = useState(undefined);
@@ -18,6 +20,8 @@ const App = () => {
     username: "admin",
     password: "admin",
   };
+
+  const prediction = "high";
 
   return (
     <>
@@ -43,6 +47,38 @@ const App = () => {
                   <h1 className="md:text-5xl text-3xl font-bold">
                     {company.name}
                   </h1>
+                  <Button
+                    className={`bg-background_2 hover:scale-105 ml-3 border-3 ${
+                      prediction == "low"
+                        ? "border-red-500"
+                        : prediction == "high"
+                        ? "border-green-400"
+                        : "border-yellow-500"
+                    } hover:shadow-lg hover:shadow-foreground_1 cursor-default transition-all duration-200 ease-in-out`}
+                    radius="lg"
+                    size="lg"
+                    startContent={
+                      prediction == "low" ? (
+                        <GoTriangleDown className="text-5xl text-red-500" />
+                      ) : prediction == "high" ? (
+                        <GoTriangleUp className="text-5xl text-green-500" />
+                      ) : (
+                        <MdOutlineHorizontalRule className="text-5xl text-yellow-500" />
+                      )
+                    }
+                  >
+                    <p
+                      className={`text-lg md:text-xl font-bold ${
+                        prediction == "low"
+                          ? "text-red-500"
+                          : prediction == "high"
+                          ? "text-green-500"
+                          : "text-yellow-500"
+                      }`}
+                    >
+                      {prediction.toUpperCase()}
+                    </p>
+                  </Button>
                 </div>
               ) : (
                 <h1 className="md:text-5xl text-3xl mb-7 font-bold">Stocks</h1>
@@ -109,7 +145,7 @@ const App = () => {
                       endContent={
                         <FaArrowRight className="text-xl text-blue-400" />
                       }
-                      className="max-w-[200px] bg-background_1 hover:scale-105 transition-all ease-in-out duration-200"
+                      className="max-w-[200px] bg-background_1 hover:scale-105 transition-all ease-in-out duration-200 hover:shadow-lg hover:shadow-blue-500"
                       onPress={() =>
                         username == credentials.username &&
                         password == credentials.password
