@@ -169,9 +169,7 @@ const DataList = ({ stock }) => {
         </div>
       </div>
 
-      <div className="mt-6">
-        <Chart stock={stockData}></Chart>
-      </div>
+      <div className="mt-6">{/* <Chart stock={stockData}></Chart> */}</div>
     </div>
   );
 };
