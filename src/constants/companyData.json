@@ -1,0 +1,52 @@
+[
+  {
+    "symbol": "CME",
+    "name": "CME Group",
+    "logo": "https://logo.clearbit.com/cme.com"
+  },
+  {
+    "symbol": "AAPL",
+    "name": "Apple",
+    "logo": "https://logo.clearbit.com/apple.com"
+  },
+  {
+    "symbol": "AMZN",
+    "name": "Amazon",
+    "logo": "https://logo.clearbit.com/amazon.com"
+  },
+  {
+    "symbol": "MSFT",
+    "name": "Microsoft",
+    "logo": "https://logo.clearbit.com/microsoft.com"
+  },
+  {
+    "symbol": "TSLA",
+    "name": "Tesla",
+    "logo": "https://logo.clearbit.com/tesla.com"
+  },
+  {
+    "symbol": "VOD",
+    "name": "Vodafone",
+    "logo": "https://logo.clearbit.com/vodafone.com"
+  },
+  {
+    "symbol": "IBM",
+    "name": "IBM",
+    "logo": "https://logo.clearbit.com/ibm.com"
+  },
+  {
+    "symbol": "NVDA",
+    "name": "Nvidia",
+    "logo": "https://logo.clearbit.com/nvidia.com"
+  },
+  {
+    "symbol": "NFLX",
+    "name": "Netflix",
+    "logo": "https://logo.clearbit.com/netflix.com"
+  },
+  {
+    "symbol": "META",
+    "name": "Meta",
+    "logo": "https://logo.clearbit.com/meta.com"
+  }
+]

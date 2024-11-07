@@ -76,11 +76,20 @@ const DataList = ({ stock }) => {
                       base: "dark",
                     }}
                   >
-                    {dateRanges.map((dateRange) => (
-                      <SelectItem key={dateRange.key}>
-                        {dateRange.label}
-                      </SelectItem>
-                    ))}
+                    {dateRanges
+                      .filter(
+                        (dateRange) =>
+                          (dateRange.key == 5 && stock.length < 5) ||
+                          stock.length >= dateRange.key ||
+                          (stock.length < dateRange.key &&
+                            dateRanges[dateRanges.indexOf(dateRange) - 1].key <
+                              stock.length)
+                      )
+                      .map((dateRange) => (
+                        <SelectItem key={dateRange.key}>
+                          {dateRange.label}
+                        </SelectItem>
+                      ))}
                   </Select>
                 </th>
                 <th>OPEN</th>
@@ -143,7 +152,7 @@ const DataList = ({ stock }) => {
         >
           <h1 className="text-xl font-bold">PAGE:</h1>
           <div className="flex flex-row gap-1.5 items-center justify-evenly"></div>
-          {Array(stockData.length / 5)
+          {Array(Math.ceil(stockData.length / 5))
             .fill(undefined)
             .map((_, index) => (
               <div

@@ -7,7 +7,22 @@ import { FaArrowRight, FaKey, FaUser } from "react-icons/fa6";
 import { GoTriangleDown, GoTriangleUp } from "react-icons/go";
 import { MdOutlineHorizontalRule } from "react-icons/md";
 
-import stockData from "./constants/data.json";
+import jsonData from "./constants/data.json";
+
+const groupedData = jsonData.reduce((acc, item) => {
+  const { symbol, ...stockData } = item;
+  if (!acc[symbol]) {
+    acc[symbol] = {
+      symbol,
+      stock: [],
+    };
+  }
+  acc[symbol].stock.push(stockData);
+  return acc;
+}, {});
+const stockData = Object.values(groupedData);
+
+import companyData from "./constants/companyData.json";
 
 const App = () => {
   const [company, setCompany] = useState(undefined);
@@ -38,27 +53,33 @@ const App = () => {
                     onClick={() => setCompany(undefined)}
                   />
                   <img
-                    src={company.logo}
-                    alt={company.name}
+                    src={
+                      companyData.find((item) => item.symbol == company.symbol)
+                        .logo
+                    }
+                    alt={company.symbol}
                     className="object-contain md:h-16 h-12 aspect-square"
                   ></img>
                   <h1 className="md:text-5xl text-3xl font-bold">
-                    {company.name}
+                    {
+                      companyData.find((item) => item.symbol == company.symbol)
+                        .name
+                    }
                   </h1>
                   <Button
                     className={`bg-background_2 hover:scale-105 ml-3 border-3 ${
-                      company.status == "low"
+                      company.stock[0].prediction == "Low"
                         ? "border-red-500"
-                        : company.status == "high"
+                        : company.stock[0].prediction == "High"
                         ? "border-green-400"
                         : "border-yellow-500"
                     } hover:shadow-lg hover:shadow-foreground_1 cursor-default transition-all duration-200 ease-in-out`}
                     radius="lg"
                     size="lg"
                     startContent={
-                      company.status == "low" ? (
+                      company.stock[0].prediction == "Low" ? (
                         <GoTriangleDown className="text-5xl text-red-500" />
-                      ) : company.status == "high" ? (
+                      ) : company.stock[0].prediction == "High" ? (
                         <GoTriangleUp className="text-5xl text-green-500" />
                       ) : (
                         <MdOutlineHorizontalRule className="text-5xl text-yellow-500" />
@@ -67,14 +88,14 @@ const App = () => {
                   >
                     <p
                       className={`text-lg md:text-xl font-bold ${
-                        company.status == "low"
+                        company.stock[0].prediction == "Low"
                           ? "text-red-500"
-                          : company.status == "high"
+                          : company.stock[0].prediction == "High"
                           ? "text-green-500"
                           : "text-yellow-500"
                       }`}
                     >
-                      {company.status.toUpperCase()}
+                      {company.stock[0].prediction.toUpperCase()}
                     </p>
                   </Button>
                 </div>
