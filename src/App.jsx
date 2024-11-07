@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { stockData } from "./constants/data";
 import CompanyList from "./components/CompanyList";
 import DataList from "./components/DataList";
 import NavBar from "./components/NavBar";
@@ -8,6 +7,8 @@ import { Button, Input } from "@nextui-org/react";
 import { FaArrowRight, FaKey, FaUser } from "react-icons/fa6";
 import { GoTriangleDown, GoTriangleUp } from "react-icons/go";
 import { MdOutlineHorizontalRule } from "react-icons/md";
+
+import stockData from "./constants/data.json";
 
 const App = () => {
   const [company, setCompany] = useState(undefined);
