@@ -1,7 +1,6 @@
 import { useState } from "react";
 import CompanyList from "./components/CompanyList";
 import DataList from "./components/DataList";
-import NavBar from "./components/NavBar";
 import { IoArrowBack } from "react-icons/io5";
 import { Button, Input } from "@nextui-org/react";
 import { FaArrowRight, FaKey, FaUser } from "react-icons/fa6";
@@ -25,7 +24,6 @@ const App = () => {
 
   return (
     <>
-      <NavBar />
       <div className="overflow-x-hidden antialiased text-neutral-200 selection:bg-neutral-200 selection:text-neutral-800">
         <div className="fixed top-0 -z-10 h-full w-full">
           <div className="absolute inset-0 -z-10 h-full w-full items-center px-5 py-24 bg-background_1"></div>
