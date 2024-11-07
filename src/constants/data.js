@@ -2,6 +2,7 @@ export const stockData = [
   {
     name: "CME Group",
     symbol: "CME",
+    status: "high",
     logo: "https://logo.clearbit.com/cme.com",
     stock: [
       {
@@ -329,6 +330,7 @@ export const stockData = [
   {
     name: "IBM",
     symbol: "IBM",
+    status: "low",
     logo: "https://logo.clearbit.com/ibm.com",
     stock: [
       {
@@ -656,6 +658,7 @@ export const stockData = [
   {
     name: "Apple",
     symbol: "AAPL",
+    status: "high",
     logo: "https://logo.clearbit.com/apple.com",
     stock: [
       {
@@ -983,6 +986,7 @@ export const stockData = [
   {
     name: "Microsoft",
     symbol: "MSFT",
+    status: "high",
     logo: "https://logo.clearbit.com/microsoft.com",
     stock: [
       {
@@ -1310,6 +1314,7 @@ export const stockData = [
   {
     name: "NVIDIA",
     symbol: "NVDA",
+    status: "flat",
     logo: "https://logo.clearbit.com/nvidia.com",
     stock: [
       {
@@ -1637,6 +1642,7 @@ export const stockData = [
   {
     name: "Amazon",
     symbol: "AMZN",
+    status: "low",
     logo: "https://logo.clearbit.com/amazon.com",
     stock: [
       {
@@ -1964,6 +1970,7 @@ export const stockData = [
   {
     name: "Meta",
     symbol: "META",
+    status: "high",
     logo: "https://logo.clearbit.com/meta.com",
     stock: [
       {
@@ -2291,6 +2298,7 @@ export const stockData = [
   {
     name: "Netflix",
     symbol: "NFLX",
+    status: "flat",
     logo: "https://logo.clearbit.com/netflix.com",
     stock: [
       {
@@ -2618,6 +2626,7 @@ export const stockData = [
   {
     name: "Tesla",
     symbol: "TSLA",
+    status: "low",
     logo: "https://logo.clearbit.com/tesla.com",
     stock: [
       {
@@ -2945,6 +2954,7 @@ export const stockData = [
   {
     name: "Vodafone",
     symbol: "VOD",
+    status: "low",
     logo: "https://logo.clearbit.com/vodafone.com",
     stock: [
       {

@@ -22,8 +22,6 @@ const App = () => {
     password: "admin",
   };
 
-  const prediction = "high";
-
   return (
     <>
       <NavBar />
@@ -50,18 +48,18 @@ const App = () => {
                   </h1>
                   <Button
                     className={`bg-background_2 hover:scale-105 ml-3 border-3 ${
-                      prediction == "low"
+                      company.status == "low"
                         ? "border-red-500"
-                        : prediction == "high"
+                        : company.status == "high"
                         ? "border-green-400"
                         : "border-yellow-500"
                     } hover:shadow-lg hover:shadow-foreground_1 cursor-default transition-all duration-200 ease-in-out`}
                     radius="lg"
                     size="lg"
                     startContent={
-                      prediction == "low" ? (
+                      company.status == "low" ? (
                         <GoTriangleDown className="text-5xl text-red-500" />
-                      ) : prediction == "high" ? (
+                      ) : company.status == "high" ? (
                         <GoTriangleUp className="text-5xl text-green-500" />
                       ) : (
                         <MdOutlineHorizontalRule className="text-5xl text-yellow-500" />
@@ -70,14 +68,14 @@ const App = () => {
                   >
                     <p
                       className={`text-lg md:text-xl font-bold ${
-                        prediction == "low"
+                        company.status == "low"
                           ? "text-red-500"
-                          : prediction == "high"
+                          : company.status == "high"
                           ? "text-green-500"
                           : "text-yellow-500"
                       }`}
                     >
-                      {prediction.toUpperCase()}
+                      {company.status.toUpperCase()}
                     </p>
                   </Button>
                 </div>
