@@ -7,7 +7,6 @@ import {
   TiArrowSortedUp,
   TiArrowUnsorted,
 } from "react-icons/ti";
-// import "../index.css";
 
 const DataList = ({ stock }) => {
   const dateRanges = [
@@ -50,10 +49,9 @@ const DataList = ({ stock }) => {
           </p>
         </div>
       </div>
-
       <div className="flex flex-col gap-4 justify-center items-center pb-8 w-full mx-auto">
         <div className="table-container w-full text-neutral-200">
-          <table className="stock-table">
+          <table className="stock-table rounded-lg">
             <thead>
               <tr>
                 <th>
@@ -169,7 +167,9 @@ const DataList = ({ stock }) => {
         </div>
       </div>
 
-      <div className="mt-6">{/* <Chart stock={stockData}></Chart> */}</div>
+      <div className="mt-6 w-full bg-background_2 mb-8 p-5 rounded-2xl">
+        <Chart data={stockData}></Chart>
+      </div>
     </div>
   );
 };

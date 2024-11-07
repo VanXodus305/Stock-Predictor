@@ -3,8 +3,8 @@ import { GoTriangleDown, GoTriangleUp } from "react-icons/go";
 
 const CompanyList = ({ company }) => {
   const update = (
-    (company.stock[0].volume - company.stock[1].volume) /
-    company.stock[0].volume
+    ((company.stock[0].close - company.stock[1].open) / company.stock[0].open) *
+    100
   ).toFixed(2);
 
   return (
