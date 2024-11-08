@@ -69,7 +69,7 @@ const DataList = ({ stock }) => {
                       setPage(1);
                     }}
                     classNames={{
-                      popoverContent: "dark bg-[#124690]",
+                      popoverContent: "dark bg-background_2",
                       value: "text-md",
                       trigger: "py-0",
                       label: "text-md text-neutral-200",
