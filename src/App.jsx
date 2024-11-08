@@ -41,7 +41,13 @@ const App = () => {
     <>
       <div className="overflow-x-hidden antialiased text-neutral-200 selection:bg-neutral-200 selection:text-neutral-800">
         <div className="fixed top-0 -z-10 h-full w-full">
-          <div className="absolute inset-0 -z-10 h-full w-full items-center px-5 py-24 bg-background_1"></div>
+          <div
+            className={`absolute inset-0 -z-9 h-full w-full items-center px-5 py-24 ${
+              loggedIn
+                ? "bg-background_1"
+                : "bg-[url('https://img.freepik.com/premium-photo/stock-market-forex-trading-graph_73426-194.jpg?w=900')] bg-cover bg-center"
+            }`}
+          ></div>
         </div>
         <div className="container mx-auto px-5 py-20 h-screen">
           {loggedIn ? (
@@ -123,7 +129,10 @@ const App = () => {
             </div>
           ) : (
             <>
-              <div className="flex w-full h-full items-center justify-center">
+              <div className="flex w-full h-full items-center justify-center flex-col gap-7 md:gap-10">
+                <h1 className="md:text-5xl text-4xl text-center w-full font-bold">
+                  Stock Predictor
+                </h1>
                 <div className="flex flex-col gap-6 w-full max-w-[800px] bg-foreground_1 py-10 px-6 rounded-3xl dark">
                   <Input
                     label="Username"
