@@ -1,6 +1,6 @@
 import { useState } from "react";
-import CompanyList from "./components/CompanyList";
-import DataList from "./components/DataList";
+import CompanyList from "../.temp/CompanyList";
+import DataList from "../.temp/DataList";
 import { IoArrowBack } from "react-icons/io5";
 import { Button, Input } from "@nextui-org/react";
 import { FaArrowRight, FaKey, FaUser } from "react-icons/fa6";
