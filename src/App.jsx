@@ -42,7 +42,7 @@ const App = () => {
       <div className="overflow-x-hidden antialiased text-neutral-200 selection:bg-neutral-200 selection:text-neutral-800">
         <div className="fixed top-0 -z-10 h-full w-full">
           <div
-            className={`absolute inset-0 -z-9 h-full w-full items-center px-5 py-24 ${"bg-[url('https://img.freepik.com/premium-photo/stock-market-forex-trading-graph_73426-194.jpg?w=900')] bg-cover bg-center"}`}
+            className={`absolute inset-0 -z-9 h-full w-full items-center px-5 py-24 bg-[url('https://img.freepik.com/premium-photo/stock-market-forex-trading-graph_73426-194.jpg?w=900')] bg-cover bg-center`}
           ></div>
         </div>
         <div className="container mx-auto px-5 py-20 h-screen">
