@@ -50,7 +50,7 @@ const DataList = ({ stock }) => {
         </div>
       </div>
       <div className="flex flex-col gap-4 justify-center items-center pb-8 w-full mx-auto">
-        <div className="table-container w-full text-neutral-200">
+        <div className="table-container w-full text-neutral-200 overflow-x-scroll">
           <table className="stock-table rounded-lg">
             <thead>
               <tr>
