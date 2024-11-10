@@ -156,7 +156,7 @@ const DataList = ({ stock }) => {
             .fill(undefined)
             .map((_, index) => (
               <div
-                className={`flex items-center justify-center rounded-full border-background_2 w-10 h-10 cursor-pointer p-2 border-2 hover:scale-110 hover:bg-background_2 group transition-all ease-in-out duration-100 ${
+                className={`flex items-center justify-center rounded-full border-background_2 w-9 h-9 cursor-pointer p-2 border-2 hover:scale-110 hover:bg-background_2 group transition-all ease-in-out duration-100 ${
                   index + 1 === page ? "bg-background_2" : "bg-transparent"
                 }`}
                 key={index + 1}
