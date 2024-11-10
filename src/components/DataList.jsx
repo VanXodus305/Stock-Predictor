@@ -1,6 +1,25 @@
 import React, { useState } from "react";
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Select, MenuItem, Pagination, Typography, FormControl, InputLabel, IconButton } from "@mui/material";
-import { TiArrowSortedDown, TiArrowSortedUp, TiArrowUnsorted } from "react-icons/ti";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Select,
+  MenuItem,
+  Pagination,
+  Typography,
+  FormControl,
+  InputLabel,
+  IconButton,
+} from "@mui/material";
+import {
+  TiArrowSortedDown,
+  TiArrowSortedUp,
+  TiArrowUnsorted,
+} from "react-icons/ti";
 import Chart from "./Chart";
 import "../styles/DataList.css";
 
@@ -12,6 +31,8 @@ const DataList = ({ stock }) => {
     { label: "Last 20 days", key: 20, start: 0, end: 20 },
     { label: "Last 30 days", key: 30, start: 0, end: 30 },
     { label: "Last 40 days", key: 40, start: 0, end: 40 },
+    { label: "Last 50 days", key: 50, start: 0, end: 50 },
+    { label: "Last 60 days", key: 60, start: 0, end: 60 },
   ];
 
   const [dateRange, setDateRange] = useState(dateRanges[0]);
@@ -46,7 +67,10 @@ const DataList = ({ stock }) => {
 
       {/* Table Section */}
       <div className="flex flex-col gap-4 justify-center items-center pb-8 w-full mx-auto">
-        <TableContainer component={Paper} className="table-container w-full text-neutral-200">
+        <TableContainer
+          component={Paper}
+          className="table-container w-full text-neutral-200"
+        >
           <Table>
             <TableHead>
               <TableRow>
@@ -56,7 +80,9 @@ const DataList = ({ stock }) => {
                     <Select
                       value={dateRange.key}
                       onChange={(e) => {
-                        const range = dateRanges.find((d) => d.key === e.target.value);
+                        const range = dateRanges.find(
+                          (d) => d.key === e.target.value
+                        );
                         setDateRange(range ? range : dateRange);
                         setStockData(stock.slice(range.start, range.end));
                         setPage(1);
@@ -69,7 +95,8 @@ const DataList = ({ stock }) => {
                             (dateRange.key === 5 && stock.length < 5) ||
                             stock.length >= dateRange.key ||
                             (stock.length < dateRange.key &&
-                              dateRanges[dateRanges.indexOf(dateRange) - 1].key < stock.length)
+                              dateRanges[dateRanges.indexOf(dateRange) - 1]
+                                .key < stock.length)
                         )
                         .map((dateRange) => (
                           <MenuItem key={dateRange.key} value={dateRange.key}>
@@ -89,13 +116,19 @@ const DataList = ({ stock }) => {
                       setPage(1);
                       if (sort === "unsorted") {
                         setSort("ascending");
-                        setStockData(stockData.sort((a, b) => a.volume - b.volume));
+                        setStockData(
+                          stockData.sort((a, b) => a.volume - b.volume)
+                        );
                       } else if (sort === "ascending") {
                         setSort("descending");
-                        setStockData(stockData.sort((a, b) => b.volume - a.volume));
+                        setStockData(
+                          stockData.sort((a, b) => b.volume - a.volume)
+                        );
                       } else {
                         setSort("unsorted");
-                        setStockData(stock.slice(dateRange.start, dateRange.end));
+                        setStockData(
+                          stock.slice(dateRange.start, dateRange.end)
+                        );
                       }
                     }}
                   >
@@ -131,7 +164,11 @@ const DataList = ({ stock }) => {
         </TableContainer>
 
         {/* Pagination */}
-        <div className={`flex flex-row gap-2 items-center justify-center w-full ${dateRange.key === 5 ? "hidden" : ""}`}>
+        <div
+          className={`flex flex-row gap-2 items-center justify-center w-full ${
+            dateRange.key === 5 ? "hidden" : ""
+          }`}
+        >
           <Typography variant="h6" className="text-xl font-bold">
             Page:
           </Typography>
