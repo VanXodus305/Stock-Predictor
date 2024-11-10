@@ -6,27 +6,38 @@ import { Button, Input } from "@nextui-org/react";
 import { FaArrowRight, FaKey, FaUser } from "react-icons/fa6";
 import { GoTriangleDown, GoTriangleUp } from "react-icons/go";
 import { MdOutlineHorizontalRule } from "react-icons/md";
+import axios from "axios";
 
-import jsonData from "./constants/data.json";
-
-const groupedData = jsonData.reduce((acc, item) => {
-  const { symbol, ...stockData } = item;
-  if (!acc[symbol]) {
-    acc[symbol] = {
-      symbol,
-      stock: [],
-    };
-  }
-  acc[symbol].stock.push(stockData);
-  return acc;
-}, {});
-const stockData = Object.values(groupedData);
-
+// import jsonData from "./constants/data.json";
 import companyData from "./constants/companyData.json";
 
 const App = () => {
-  const [company, setCompany] = useState(undefined);
+  const [stockData, setStockData] = useState([]);
 
+  const fetchData = async () => {
+    await axios
+      .get("http://localhost:8080/api/stocks/all")
+      .then((response) => {
+        const groupedData = response.data.reduce((acc, item) => {
+          const { symbol, ...stockData } = item;
+          if (!acc[symbol]) {
+            acc[symbol] = {
+              symbol,
+              stock: [],
+            };
+          }
+          acc[symbol].stock.push(stockData);
+          return acc;
+        }, {});
+        setStockData(Object.values(groupedData));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  fetchData();
+
+  const [company, setCompany] = useState(undefined);
   const [loggedIn, setLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");

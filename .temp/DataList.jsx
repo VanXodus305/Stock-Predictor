@@ -16,6 +16,8 @@ const DataList = ({ stock }) => {
     { label: "Last 20 days", key: 20, start: 0, end: 20 },
     { label: "Last 30 days", key: 30, start: 0, end: 30 },
     { label: "Last 40 days", key: 40, start: 0, end: 40 },
+    { label: "Last 50 days", key: 50, start: 0, end: 50 },
+    { label: "Last 60 days", key: 60, start: 0, end: 60 },
   ];
   const [dateRange, setDateRange] = useState(dateRanges[0]);
 
