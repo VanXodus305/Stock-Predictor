@@ -2,6 +2,7 @@ import React from "react";
 import { GoTriangleDown, GoTriangleUp } from "react-icons/go";
 import { Paper, Typography, Box } from "@mui/material";
 import companyData from "../constants/companyData.json";
+import "../styles/CompanyList.css";
 
 const CompanyList = ({ company }) => {
   const update = (
@@ -10,42 +11,35 @@ const CompanyList = ({ company }) => {
   ).toFixed(2);
 
   return (
-    <Paper
-      elevation={10}
-      className="flex flex-row items-center justify-between py-1 md:py-1.5 pl-4 pr-1 md:pr-1.5 rounded-2xl cursor-pointer transition-all ease-in-out duration-300 hover:shadow-lg hover:bg-background_2 w-full md:h-16 h-[56px] group"
-    >
+    <Paper className="company-list-container">
       {/* Company Info Section */}
-      <Box className="flex flex-row gap-5 items-center justify-start w-[80%] pl-2 md:pl-4">
+      <Box className="company-info">
         <img
           src={companyData.find((item) => item.symbol === company.symbol).logo}
           alt={company.symbol}
-          className="object-contain md:h-10 h-8 aspect-square"
+          className="company-logo"
         />
-        <Box className="flex flex-col items-start justify-start">
-          <Typography variant="h6" className="font-semibold w-full">
+        <Box className="company-details">
+          <Typography variant="h6" className="company-name">
             {companyData
               .find((item) => item.symbol === company.symbol)
               .name.toUpperCase()}
           </Typography>
-          <Typography variant="body2" className="w-full">
+          <Typography variant="body2" className="company-symbol">
             {company.symbol}
           </Typography>
         </Box>
       </Box>
 
       {/* Update Percentage Section */}
-      <Box className="flex w-[20%] justify-end items-center h-full">
-        <Box
-          className={`flex flex-row items-center justify-center bg-background_1 md:px-3 px-1.5 rounded-xl h-full ${
-            update < 0 ? "text-red-500" : "text-green-500"
-          }`}
-        >
+      <Box className="update-percentage">
+        <Box className={`update-box ${update < 0 ? "text-red" : "text-green"}`}>
           {update < 0 ? (
-            <GoTriangleDown className="text-2xl md:text-3xl" />
+            <GoTriangleDown className="update-icon" />
           ) : (
-            <GoTriangleUp className="text-2xl md:text-3xl" />
+            <GoTriangleUp className="update-icon" />
           )}
-          <Typography variant="body2" className="font-bold">
+          <Typography variant="body2" className="update-percentage-text">
             {update}%
           </Typography>
         </Box>

@@ -1,4 +1,5 @@
 import React from "react";
+
 import {
   ComposedChart,
   XAxis,
@@ -8,21 +9,14 @@ import {
   ResponsiveContainer,
   Bar,
 } from "recharts";
+import "../styles/Chart.css";
 
 // Custom tooltip component
 const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
     const data = payload[0].payload;
     return (
-      <div
-        style={{
-          backgroundColor: "rgba(255, 255, 255, 0.9)",
-          padding: "10px",
-          borderRadius: "5px",
-          border: "1px solid #ccc",
-          color: "#333",
-        }}
-      >
+      <div className="custom-tooltip">
         <p>{`Date: ${label}`}</p>
         <p>{`Open: ${data.open}`}</p>
         <p>{`Close: ${data.close}`}</p>

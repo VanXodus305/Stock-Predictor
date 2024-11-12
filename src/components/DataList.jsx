@@ -24,6 +24,7 @@ import Chart from "./Chart";
 import "../styles/DataList.css";
 
 const DataList = ({ stock }) => {
+  // Adjusted date ranges to reflect up to 60 days
   const dateRanges = [
     { label: "Last 5 days", key: 5, start: 0, end: 5 },
     { label: "Last 10 days", key: 10, start: 0, end: 10 },
