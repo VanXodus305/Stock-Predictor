@@ -8,7 +8,7 @@ import { GoTriangleDown, GoTriangleUp } from "react-icons/go";
 import { MdOutlineHorizontalRule } from "react-icons/md";
 import axios from "axios";
 
-import jsonData from "./constants/data.json";
+// import jsonData from "./constants/data.json";
 import companyData from "./constants/companyData.json";
 
 const App = () => {
@@ -19,17 +19,19 @@ const App = () => {
       .get("http://localhost:8080/api/stock-prices")
       .then((response) => {
         // console.log(response.data);
-        const groupedData = response.data.reduce((acc, item) => {
-          const { symbol, ...stockData } = item;
-          if (!acc[symbol]) {
-            acc[symbol] = {
-              symbol,
-              stock: [],
-            };
-          }
-          acc[symbol].stock.push(stockData);
-          return acc;
-        }, {});
+        const groupedData = response.data
+          .sort((a, b) => a.id - b.id)
+          .reduce((acc, item) => {
+            const { symbol, ...stockData } = item;
+            if (!acc[symbol]) {
+              acc[symbol] = {
+                symbol,
+                stock: [],
+              };
+            }
+            acc[symbol].stock.push(stockData);
+            return acc;
+          }, {});
         setStockData(Object.values(groupedData));
       })
       .catch((error) => {
