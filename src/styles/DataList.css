@@ -72,6 +72,12 @@ body {
   width: 100%;
 }
 
+.table-head {
+  background-color: #124690;
+  text-align: center;
+  color: #124690;
+}
+
 .stock-table {
   width: 100%;
   border-collapse: collapse;

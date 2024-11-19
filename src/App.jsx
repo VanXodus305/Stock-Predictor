@@ -1,6 +1,6 @@
 import { useState } from "react";
-import CompanyList from "../.temp/CompanyList";
-import DataList from "../.temp/DataList";
+import CompanyList from "./components/CompanyList";
+import DataList from "./components/DataList";
 import { IoArrowBack } from "react-icons/io5";
 import { Button, Input } from "@nextui-org/react";
 import { FaArrowRight, FaKey, FaUser } from "react-icons/fa6";
@@ -39,6 +39,21 @@ const App = () => {
       });
   };
   fetchData();
+
+  // const groupedData = jsonData
+  //   .sort((a, b) => a.id - b.id)
+  //   .reduce((acc, item) => {
+  //     const { symbol, ...stockData } = item;
+  //     if (!acc[symbol]) {
+  //       acc[symbol] = {
+  //         symbol,
+  //         stock: [],
+  //       };
+  //     }
+  //     acc[symbol].stock.push(stockData);
+  //     return acc;
+  //   }, {});
+  // const stockData = Object.values(groupedData);
 
   const [company, setCompany] = useState(undefined);
   const [loggedIn, setLoggedIn] = useState(false);

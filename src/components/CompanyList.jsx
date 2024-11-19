@@ -11,7 +11,10 @@ const CompanyList = ({ company }) => {
   ).toFixed(2);
 
   return (
-    <Paper className="company-list-container">
+    <Paper
+      className="company-list-container"
+      sx={{ borderRadius: "10px", backgroundColor: "#2463A2" }}
+    >
       {/* Company Info Section */}
       <Box className="company-info">
         <img
@@ -20,26 +23,45 @@ const CompanyList = ({ company }) => {
           className="company-logo"
         />
         <Box className="company-details">
-          <Typography variant="h6" className="company-name">
+          <Typography
+            variant="h6"
+            color="common.white"
+            sx={{
+              fontWeight: "600",
+            }}
+            className="company-name"
+          >
             {companyData
-              .find((item) => item.symbol === company.symbol)
+              .find((item) => item.symbol == company.symbol)
               .name.toUpperCase()}
           </Typography>
-          <Typography variant="body2" className="company-symbol">
+          <Typography
+            variant="body2"
+            color="common.white"
+            className="company-symbol"
+          >
             {company.symbol}
           </Typography>
         </Box>
       </Box>
 
       {/* Update Percentage Section */}
-      <Box className="update-percentage">
-        <Box className={`update-box ${update < 0 ? "text-red" : "text-green"}`}>
+      <Box className="update-percentage" height="100%">
+        <Box
+          className={`update-box ${update < 0 ? "text-red" : "text-green"}`}
+          sx={{ borderRadius: "10px", backgroundColor: "#041D37" }}
+          height="100%"
+        >
           {update < 0 ? (
             <GoTriangleDown className="update-icon" />
           ) : (
             <GoTriangleUp className="update-icon" />
           )}
-          <Typography variant="body2" className="update-percentage-text">
+          <Typography
+            variant="body2"
+            className="update-percentage-text"
+            sx={{ fontWeight: "bold" }}
+          >
             {update}%
           </Typography>
         </Box>

@@ -37,7 +37,10 @@ const DataList = ({ stock }) => {
   ];
 
   const [dateRange, setDateRange] = useState(dateRanges[0]);
-  const [sort, setSort] = useState("unsorted");
+
+  const sortOptions = ["unsorted", "ascending", "descending"];
+  const [sort, setSort] = useState(sortOptions[0]);
+
   const [stockData, setStockData] = useState(stock.slice(0, 5));
   const [page, setPage] = useState(1);
 
@@ -74,10 +77,18 @@ const DataList = ({ stock }) => {
         >
           <Table>
             <TableHead>
-              <TableRow>
+              <TableRow className="table-head">
                 <TableCell>
                   <FormControl fullWidth>
-                    <InputLabel>Date</InputLabel>
+                    <InputLabel>
+                      <Typography
+                        variant="subtitle1"
+                        color="common.white"
+                        align="center"
+                      >
+                        DATE
+                      </Typography>
+                    </InputLabel>
                     <Select
                       value={dateRange.key}
                       onChange={(e) => {
@@ -89,6 +100,7 @@ const DataList = ({ stock }) => {
                         setPage(1);
                       }}
                       label="Date"
+                      color="primary"
                     >
                       {dateRanges
                         .filter(
@@ -101,16 +113,52 @@ const DataList = ({ stock }) => {
                         )
                         .map((dateRange) => (
                           <MenuItem key={dateRange.key} value={dateRange.key}>
-                            {dateRange.label}
+                            <Typography
+                              variant="subtitle1"
+                            >
+                              {dateRange.label}
+                            </Typography>
                           </MenuItem>
                         ))}
                     </Select>
                   </FormControl>
                 </TableCell>
-                <TableCell>Open</TableCell>
-                <TableCell>Low</TableCell>
-                <TableCell>High</TableCell>
-                <TableCell>Close</TableCell>
+                <TableCell>
+                  <Typography
+                    variant="subtitle1"
+                    color="common.white"
+                    align="center"
+                  >
+                    OPEN
+                  </Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography
+                    variant="subtitle1"
+                    color="common.white"
+                    align="center"
+                  >
+                    LOW
+                  </Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography
+                    variant="subtitle1"
+                    color="common.white"
+                    align="center"
+                  >
+                    HIGH
+                  </Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography
+                    variant="subtitle1"
+                    color="common.white"
+                    align="center"
+                  >
+                    CLOSE
+                  </Typography>
+                </TableCell>
                 <TableCell>
                   <IconButton
                     onClick={() => {
@@ -134,7 +182,9 @@ const DataList = ({ stock }) => {
                     }}
                   >
                     <div className="flex flex-row w-full justify-center gap-2 items-center select-none">
-                      <Typography variant="h6">Volume</Typography>
+                      <Typography variant="subtitle1" color="common.white">
+                        VOLUME
+                      </Typography>
                       {sort === "unsorted" ? (
                         <TiArrowUnsorted className="flex text-lg" />
                       ) : sort === "ascending" ? (
@@ -152,12 +202,56 @@ const DataList = ({ stock }) => {
                 .slice((page - 1) * 5, (page - 1) * 5 + 5)
                 .map((stockItem, idx) => (
                   <TableRow key={idx} className="bg-foreground_1">
-                    <TableCell>{stockItem.date}</TableCell>
-                    <TableCell>{stockItem.open}</TableCell>
-                    <TableCell>{stockItem.low}</TableCell>
-                    <TableCell>{stockItem.high}</TableCell>
-                    <TableCell>{stockItem.close}</TableCell>
-                    <TableCell>{stockItem.volume}</TableCell>
+                    <TableCell>
+                      <Typography
+                        variant="subtitle1"
+                        color="common.white"
+                        align="center"
+                      >
+                        {stockItem.date}
+                      </Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography
+                        variant="subtitle1"
+                        color="common.white"
+                        align="center"
+                      >
+                        {stockItem.open}
+                      </Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography
+                        variant="subtitle1"
+                        color="common.white"
+                        align="center"
+                      >
+                        {stockItem.low}
+                      </Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography
+                        variant="subtitle1"
+                        color="common.white"
+                        align="center"
+                      >
+                        {stockItem.high}
+                      </Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography
+                        variant="subtitle1"
+                        color="common.white"
+                        align="center"
+                      >
+                        {stockItem.close}
+                      </Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography variant="subtitle1" color="common.white">
+                        {stockItem.volume}
+                      </Typography>
+                    </TableCell>
                   </TableRow>
                 ))}
             </TableBody>
@@ -171,7 +265,7 @@ const DataList = ({ stock }) => {
           }`}
         >
           <Typography variant="h6" className="text-xl font-bold">
-            Page:
+            PAGE:
           </Typography>
           <Pagination
             count={Math.ceil(stockData.length / 5)}
