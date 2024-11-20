@@ -2,14 +2,14 @@ import { useState } from "react";
 import CompanyList from "./components/CompanyList";
 import DataList from "./components/DataList";
 import { IoArrowBack } from "react-icons/io5";
-import { Button, Input } from "@nextui-org/react";
-import { FaArrowRight, FaKey, FaUser } from "react-icons/fa6";
+import { Button } from "@nextui-org/react";
 import { GoTriangleDown, GoTriangleUp } from "react-icons/go";
 import { MdOutlineHorizontalRule } from "react-icons/md";
 import axios from "axios";
 
 // import jsonData from "./constants/data.json";
 import companyData from "./constants/companyData.json";
+import Login from "./components/Login";
 
 const App = () => {
   const [stockData, setStockData] = useState([]);
@@ -18,7 +18,6 @@ const App = () => {
     await axios
       .get("http://localhost:8080/api/stock-prices")
       .then((response) => {
-        // console.log(response.data);
         const groupedData = response.data
           .sort((a, b) => a.id - b.id)
           .reduce((acc, item) => {
@@ -57,14 +56,6 @@ const App = () => {
 
   const [company, setCompany] = useState(undefined);
   const [loggedIn, setLoggedIn] = useState(false);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState(false);
-
-  const credentials = {
-    username: "admin",
-    password: "admin",
-  };
 
   return (
     <>
@@ -154,71 +145,7 @@ const App = () => {
             </div>
           ) : (
             <>
-              <div className="flex w-full h-full items-center justify-center flex-col gap-7 md:gap-10">
-                <h1 className="md:text-5xl text-4xl text-center w-full font-bold">
-                  Stock Predictor
-                </h1>
-                <div className="flex flex-col gap-6 w-full max-w-[800px] bg-foreground_1 py-10 px-6 rounded-3xl dark">
-                  <Input
-                    label="Username"
-                    isClearable
-                    size="lg"
-                    isRequired
-                    radius="lg"
-                    labelPlacement="outside"
-                    startContent={
-                      <FaUser className="text-lg text-neutral-400" />
-                    }
-                    classNames={{
-                      label: "text-lg text-neutral-200 font-semibold",
-                    }}
-                    onValueChange={(value) => setUsername(value)}
-                  ></Input>
-                  <Input
-                    label="Password"
-                    isClearable
-                    size="lg"
-                    type="password"
-                    isRequired
-                    radius="lg"
-                    labelPlacement="outside"
-                    startContent={
-                      <FaKey className="text-lg text-neutral-400" />
-                    }
-                    classNames={{
-                      label: "text-lg text-neutral-200 font-semibold",
-                    }}
-                    onValueChange={(value) => setPassword(value)}
-                  ></Input>
-                  <div className="flex w-full items-center justify-center mt-2 flex-col gap-1">
-                    <Button
-                      radius="large"
-                      size="lg"
-                      fullWidth
-                      endContent={
-                        <FaArrowRight className="text-xl text-blue-400" />
-                      }
-                      className="max-w-[200px] bg-background_1 hover:scale-105 transition-all ease-in-out duration-200 hover:shadow-lg hover:shadow-blue-500"
-                      onPress={() =>
-                        username == credentials.username &&
-                        password == credentials.password
-                          ? (setLoggedIn(true), setError(false))
-                          : (setError(true),
-                            setTimeout(() => setError(false), 3000))
-                      }
-                    >
-                      <h1 className="font-bold text-neutral-200 text-xl">
-                        LOGIN
-                      </h1>
-                    </Button>
-                    {error && (
-                      <p className="text-red-500 text-md font-semibold">
-                        Invalid Username or Password
-                      </p>
-                    )}
-                  </div>
-                </div>
-              </div>
+              <Login click={() => setLoggedIn(true)} />
             </>
           )}
         </div>
