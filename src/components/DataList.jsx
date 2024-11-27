@@ -113,9 +113,7 @@ const DataList = ({ stock }) => {
                         )
                         .map((dateRange) => (
                           <MenuItem key={dateRange.key} value={dateRange.key}>
-                            <Typography
-                              variant="subtitle1"
-                            >
+                            <Typography variant="subtitle1">
                               {dateRange.label}
                             </Typography>
                           </MenuItem>
@@ -157,6 +155,15 @@ const DataList = ({ stock }) => {
                     align="center"
                   >
                     CLOSE
+                  </Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography
+                    variant="subtitle1"
+                    color="common.white"
+                    align="center"
+                  >
+                    STATUS
                   </Typography>
                 </TableCell>
                 <TableCell>
@@ -245,6 +252,29 @@ const DataList = ({ stock }) => {
                         align="center"
                       >
                         {stockItem.close}
+                      </Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography
+                        variant="subtitle1"
+                        color={
+                          (
+                            ((stockItem.close - stockItem.open) /
+                              stockItem.open) *
+                            100
+                          ).toFixed(2) < 0
+                            ? "#ff474c"
+                            : "#80ef80"
+                        }
+                        align="center"
+                        fontWeight={600}
+                      >
+                        {(
+                          ((stockItem.close - stockItem.open) /
+                            stockItem.open) *
+                          100
+                        ).toFixed(2)}
+                        %
                       </Typography>
                     </TableCell>
                     <TableCell>
