@@ -7,7 +7,7 @@ import { GoTriangleDown, GoTriangleUp } from "react-icons/go";
 import { MdOutlineHorizontalRule } from "react-icons/md";
 import axios from "axios";
 
-// import jsonData from "./constants/data.json";
+import jsonData from "./constants/data.json";
 import companyData from "./constants/companyData.json";
 import Login from "./components/Login";
 
@@ -35,24 +35,23 @@ const App = () => {
       })
       .catch((error) => {
         console.error(error);
+        const groupedData = jsonData
+          .sort((a, b) => a.id - b.id)
+          .reduce((acc, item) => {
+            const { symbol, ...stockData } = item;
+            if (!acc[symbol]) {
+              acc[symbol] = {
+                symbol,
+                stock: [],
+              };
+            }
+            acc[symbol].stock.push(stockData);
+            return acc;
+          }, {});
+        setStockData(Object.values(groupedData));
       });
   };
   fetchData();
-
-  // const groupedData = jsonData
-  //   .sort((a, b) => a.id - b.id)
-  //   .reduce((acc, item) => {
-  //     const { symbol, ...stockData } = item;
-  //     if (!acc[symbol]) {
-  //       acc[symbol] = {
-  //         symbol,
-  //         stock: [],
-  //       };
-  //     }
-  //     acc[symbol].stock.push(stockData);
-  //     return acc;
-  //   }, {});
-  // const stockData = Object.values(groupedData);
 
   const [company, setCompany] = useState(undefined);
   const [loggedIn, setLoggedIn] = useState(false);
